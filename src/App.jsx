@@ -1,7 +1,7 @@
+import Route from "./router/Route"
+
 function App() {
-  return <div className="text-green-500 text-5xl">
-    App Component
-  </div>
+  return <Route/>
 }
 
 export default App;
