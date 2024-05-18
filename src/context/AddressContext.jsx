@@ -1,14 +1,10 @@
 import { createContext, useState } from "react";
 import axios from "../config/axios";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
 
 export const AddressContext = createContext();
 
 export default function AddressContextProvider({ children }) {
-  const { addressId } = useParams();
-  const [initialLoading, setInitialLoading] = useState(true);
-  const [address, setAddress] = useState([]);
   const [allAddress, setAllAddress] = useState([]);
 
   const getAddress = () => {
@@ -19,9 +15,6 @@ export default function AddressContextProvider({ children }) {
       })
       .catch((error) => {
         console.log(error);
-      })
-      .finally(() => {
-        setInitialLoading(false);
       });
   };
 
@@ -31,12 +24,9 @@ export default function AddressContextProvider({ children }) {
 
   const createAddress = async (input) => {
     try {
-      console.log("input before post axios", input);
-      const res = await axios.post("/address", input);
-      if (!res) {
-        setInitialLoading(true);
-      }
-      console.log("create address successfully~", input);
+      // console.log("input before post axios", input);
+      await axios.post("/address", input);
+      // console.log("create address successfully~", input);
     } catch (err) {
       console.log("create address failed:", err);
     }
@@ -45,11 +35,8 @@ export default function AddressContextProvider({ children }) {
   const editAddress = async (input, addressId) => {
     try {
       console.log(input);
-      const res = await axios.patch(`/address/${addressId}`, input);
-      if (!res) {
-        setInitialLoading(true);
-      }
-      console.log("Edit address successfully", input);
+      await axios.patch(`/address/${addressId}`, input);
+      // console.log("Edit address successfully", input);
     } catch (err) {
       console.log("Error editing address: ", err);
     }
@@ -62,8 +49,6 @@ export default function AddressContextProvider({ children }) {
         editAddress,
         getAddress,
         allAddress,
-        initialLoading,
-        setInitialLoading,
         // getAddressById,
       }}
     >

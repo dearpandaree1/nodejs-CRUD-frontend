@@ -6,7 +6,6 @@ import AddressSubmitButton from "../editAddress/AddressSubmitButton";
 import { useAddress } from "../../hook/use-address";
 
 export default function CreateAddressForm() {
-  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState({});
   const { createAddress, getAddress } = useAddress();
   const [input, setInput] = useState({
@@ -35,30 +34,23 @@ export default function CreateAddressForm() {
       // formData.append("address2", input.address2);
       // formData.append("city", input.city);
       // formData.append("zipCode", input.zipCode);
-      setIsLoading(true);
-      // console.log("herreeeeeeee", formData);
       console.log("handleSubmitFormInput", input);
       await createAddress(input);
-
-      // getAddress();
-      setIsLoading(false);
     } catch (err) {
       console.log(err);
-      setIsLoading(false);
-      // setError({ mobile: err.response.data.message });
     } finally {
-      setIsLoading(false);
+      getAddress();
     }
   };
-  // if (isLoading) {
-  //   return <Loading />;
-  // }
 
   return (
     <>
       <form onSubmit={handleSubmitForm} className=" gap-3 m-auto w-[600px] p-3">
         <div className="">
           <h1 className="text-xl mb-3 font-bold">Create Address</h1>
+          <h1 className="text-[15px] mb-4 font-medium ">
+            Please fill in the information below:
+          </h1>
           {/* <p className="text-xs mb-2">{formDescription}</p> */}
         </div>
 

@@ -9,7 +9,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <Layout />,
     children: [
-      { path: "/", element: <AddressPage /> },
+      { path: "", element: <AddressPage /> },
       { path: "address/:addressId", element: <EditAddressPage /> },
     ],
   },

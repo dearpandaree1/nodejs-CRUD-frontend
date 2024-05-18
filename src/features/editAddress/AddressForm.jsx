@@ -9,6 +9,7 @@ export default function AddressForm() {
   const { addressId } = useParams();
   const [address, setAddress] = useState({});
   const { editAddress } = useAddress();
+  const { getAddress } = useAddress();
   const [input, setInput] = useState({
     firstName: "",
     lastName: "",
@@ -18,8 +19,6 @@ export default function AddressForm() {
     city: "",
     zipCode: "",
   });
-  const [isLoading, setIsLoading] = useState(false);
-  const [initialLoading, setInitialLoading] = useState(true);
 
   useEffect(() => {
     axios
@@ -30,9 +29,6 @@ export default function AddressForm() {
       })
       .catch((error) => {
         console.log(error);
-      })
-      .finally(() => {
-        setInitialLoading(false);
       });
   }, []);
 
@@ -44,16 +40,13 @@ export default function AddressForm() {
     try {
       e.preventDefault();
       await editAddress(input, addressId);
-      setIsLoading(false);
     } catch (err) {
       console.log(err);
     }
-    console.log(input);
   };
 
   return (
     <>
-      {/* <h1 className="m-auto mt-10 ">Please fill in the information below:</h1> */}
       <div className=" m-auto mt-10 w-[600px] p-10  ">
         <h1 className="text-[15px] mb-4 font-medium ">
           Please fill in the information below:

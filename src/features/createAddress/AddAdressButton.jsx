@@ -1,4 +1,3 @@
-import CreateProductForm from "./CreateAddressForm";
 import { useState } from "react";
 import Modal from "./Modal";
 import CreateAddressForm from "./CreateAddressForm";
@@ -15,7 +14,7 @@ export default function AddAddressButton({ buttonName }) {
         {buttonName}
       </button>
       <Modal
-        title="Create product"
+        title="Create address"
         open={isOpen}
         onClose={() => setIsOpen(false)}
       >

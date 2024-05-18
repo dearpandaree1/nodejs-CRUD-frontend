@@ -1,23 +1,32 @@
 import { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AddAddressButton from "../features/createAddress/AddAdressButton";
 import AddressContainer from "../features/showAllAddress/AddressContainer";
 import axios from "../config/axios";
 import { useAddress } from "../hook/use-address";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function AddressPage() {
   const navigate = useNavigate();
-  const { getAddress, allAddress, setInitialLoading } = useAddress();
+  const { getAddress, allAddress } = useAddress();
 
   useEffect(() => {
     getAddress();
   }, [allAddress.length]);
+
+  const showToastMessage = () => {
+    // toast.success("Remove an address successfully!", {
+    //   position: toast.POSITION.TOP_RIGHT,
+    // });
+    toast.warning("This is a toast notification !");
+  };
 
   const handleRemoveClick = async (addressId) => {
     console.log(addressId);
     try {
       await axios.delete(`/address/${addressId}`);
       getAddress();
+      showToastMessage();
     } catch (err) {
       console.log(err);
     }
@@ -42,12 +51,11 @@ export default function AddressPage() {
                     address2={el?.address2}
                     city={el?.city}
                     zipCode={el?.zipCode}
-                    // el={el.id}
                     onClickRemove={() => {
                       handleRemoveClick(el.id);
+                      // showToastMessage();
                     }}
                     onClickEdit={() => {
-                      // console.log(el.id);
                       navigate(`address/${el.id}`);
                     }}
                   />
