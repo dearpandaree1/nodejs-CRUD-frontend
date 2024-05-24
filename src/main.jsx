@@ -1,14 +1,17 @@
 // import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
-import AddressContextProvider from './context/AddressContext.jsx'
+import ReactDOM from "react-dom/client";
+import App from "./App.jsx";
+import "./index.css";
+import AddressContextProvider from "./context/AddressContext.jsx";
+import AuthContextProvider from "./context/AuthContext.jsx";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  // <React.StrictMode>
-  <AddressContextProvider>
-    <App />
-  </AddressContextProvider>
+ReactDOM.createRoot(document.getElementById("root")).render(
+    // <React.StrictMode>
+    <AuthContextProvider>
+        <AddressContextProvider>
+            <App />
+        </AddressContextProvider>
+    </AuthContextProvider>
 
-  // </React.StrictMode>,
-)
+    // </React.StrictMode>,
+);

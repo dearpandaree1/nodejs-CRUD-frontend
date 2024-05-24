@@ -6,8 +6,6 @@ export default function AddressContainer({
   address2,
   city,
   zipCode,
-  country,
-  province,
   onClickRemove,
   onClickEdit,
 }) {
@@ -18,12 +16,12 @@ export default function AddressContainer({
 
   return (
     <>
-      <div className="w-[350px] h-[240px] m-auto mt-10 p-8 border-2  border-neutral-200 text-[16px] flex flex-col gap-[5px] shadow-2xl bg-neutral-100">
+      <div className="w-[350px] h-[240px] m-auto mt-10 p-8 border-2  border-neutral-200 text-[16px] flex flex-col gap-[5px] shadow-2xl">
         <div className="flex gap-5 font-semibold ">
           <div className="">{CapitalizeFirstLetter(firstName)}</div>
           <div className="">{CapitalizeFirstLetter(lastName)}</div>
         </div>
-        <div className="text-">{CapitalizeFirstLetter(phoneNumber)}</div>
+        <div className="text-">{phoneNumber}</div>
         <div className="">{CapitalizeFirstLetter(address1)}</div>
         <div className="">{CapitalizeFirstLetter(address2)}</div>
         <div className="flex gap-3 ">
